@@ -1,0 +1,70 @@
+.car-details-card {
+  margin-top: 16px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.detail-box {
+  padding: 16px;
+  background-color: rgba(33, 150, 243, 0.04);
+  border-radius: 4px;
+}
+
+.detail-label {
+  color: #666;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.detail-value {
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
+.disabled-parking-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  background-color: #e0e0e0;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.disabled-parking-chip.has-parking {
+  background-color: #4caf50;
+  color: white;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}

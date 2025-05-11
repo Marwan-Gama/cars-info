@@ -1,7 +1,5 @@
-import { Card, CardContent, Typography, Box, Chip } from "@mui/material";
 import type { CarData } from "../types/car";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import AccessibleIcon from "@mui/icons-material/Accessible";
+import "./CarDetails.css";
 
 interface CarDetailsProps {
   carData: CarData;
@@ -10,124 +8,75 @@ interface CarDetailsProps {
 
 export const CarDetails = ({ carData, hasDisabledParking = false }: CarDetailsProps) => {
   return (
-    <Card sx={{ mt: 2 }}>
-      <CardContent>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-          <Typography variant="h5">פרטי הרכב</Typography>
-          <DirectionsCarIcon color="primary" />
-        </Box>
+    <div className="car-details-card">
+      <div className="card-header">
+        <h2 className="card-title">פרטי הרכב</h2>
+        <svg className="icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z" />
+        </svg>
+      </div>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" },
-            gap: 2,
-          }}
-        >
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              מספר רכב
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.mispar_rechev}
-            </Typography>
-          </Box>
+      <div className="details-grid">
+        <div className="detail-box">
+          <p className="detail-label">מספר רכב</p>
+          <p className="detail-value">{carData.mispar_rechev}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              יצרן
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.tozeret_nm}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">יצרן</p>
+          <p className="detail-value">{carData.tozeret_nm}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              דגם
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.kinuy_mishari}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">דגם</p>
+          <p className="detail-value">{carData.kinuy_mishari}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              שנת ייצור
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.shnat_yitzur}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">שנת ייצור</p>
+          <p className="detail-value">{carData.shnat_yitzur}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              בעלות
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.baalut}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">בעלות</p>
+          <p className="detail-value">{carData.baalut}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              מספר שלדה
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.misgeret}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">מספר שלדה</p>
+          <p className="detail-value">{carData.misgeret}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              צבע
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.tzeva_rechev}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">צבע</p>
+          <p className="detail-value">{carData.tzeva_rechev}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              סוג דלק
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.sug_delek_nm}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">סוג דלק</p>
+          <p className="detail-value">{carData.sug_delek_nm}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              צמיג קדמי
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.zmig_kidmi}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">צמיג קדמי</p>
+          <p className="detail-value">{carData.zmig_kidmi}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              צמיג אחורי
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {carData.zmig_ahori}
-            </Typography>
-          </Box>
+        <div className="detail-box">
+          <p className="detail-label">צמיג אחורי</p>
+          <p className="detail-value">{carData.zmig_ahori}</p>
+        </div>
 
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              תג חניה לנכה
-            </Typography>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
-              <Chip
-                label={hasDisabledParking ? "יש תג חניה לנכה" : "אין תג חניה לנכה"}
-                color={hasDisabledParking ? "success" : "default"}
-                icon={<AccessibleIcon />}
-              />
-            </Box>
-          </Box>
-        </Box>
-      </CardContent>
-    </Card>
+        <div className="detail-box">
+          <p className="detail-label">תג חניה לנכה</p>
+          <div className="disabled-parking-chip" style={{ backgroundColor: hasDisabledParking ? '#4caf50' : '#e0e0e0', color: hasDisabledParking ? 'white' : 'rgba(0, 0, 0, 0.87)' }}>
+            <svg className="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" />
+            </svg>
+            {hasDisabledParking ? "יש תג חניה לנכה" : "אין תג חניה לנכה"}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }; 

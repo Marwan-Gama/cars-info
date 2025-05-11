@@ -1,25 +1,17 @@
-import { Skeleton, Card, CardContent, Box } from "@mui/material";
+import "./LoadingSkeleton.css";
 
 export const LoadingSkeleton = () => {
   return (
-    <Card>
-      <CardContent>
-        <Skeleton variant="text" width="40%" height={40} sx={{ mb: 2 }} />
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" },
-            gap: 3,
-          }}
-        >
-          {[...Array(10)].map((_, index) => (
-            <Box key={index} sx={{ p: 2 }}>
-              <Skeleton variant="text" width="60%" height={20} />
-              <Skeleton variant="text" width="80%" height={24} />
-            </Box>
-          ))}
-        </Box>
-      </CardContent>
-    </Card>
+    <div className="skeleton-card">
+      <div className="skeleton-header" />
+      <div className="skeleton-grid">
+        {[...Array(10)].map((_, index) => (
+          <div key={index} className="skeleton-item">
+            <div className="skeleton-label" />
+            <div className="skeleton-value" />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };

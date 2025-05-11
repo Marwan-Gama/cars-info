@@ -1,13 +1,4 @@
-import {
-  TextField,
-  Button,
-  Box,
-  Paper,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
+import "./SearchBar.css";
 
 interface SearchBarProps {
   plateNumber: string;
@@ -35,90 +26,40 @@ export const SearchBar = ({
   };
 
   return (
-    <Paper
-      elevation={2}
-      sx={{
-        p: 3,
-        borderRadius: 2,
-        background: "rgba(255, 255, 255, 0.9)",
-        backdropFilter: "blur(10px)",
-        transition: "all 0.3s ease",
-        "&:hover": {
-          boxShadow: "0 8px 24px rgba(0, 0, 0, 0.12)",
-        },
-      }}
-    >
-      <Box sx={{ display: "flex", gap: 2 }}>
-        <TextField
-          fullWidth
-          label="Enter Plate Number"
-          value={plateNumber}
-          onChange={(e) => onPlateNumberChange(e.target.value)}
-          onKeyPress={handleKeyPress}
-          error={!!error}
-          helperText={error}
-          placeholder="Enter Israeli license plate number"
-          variant="outlined"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon color="action" />
-              </InputAdornment>
-            ),
-            endAdornment: plateNumber && (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={handleClear}
-                  edge="end"
-                  size="small"
-                  sx={{ visibility: plateNumber ? "visible" : "hidden" }}
-                >
-                  <ClearIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              "&:hover fieldset": {
-                borderColor: "primary.main",
-              },
-              "&.Mui-focused fieldset": {
-                borderWidth: 2,
-              },
-            },
-          }}
-        />
-        <Button
-          variant="contained"
+    <div className="search-container">
+      <div className="search-form">
+        <div className="search-input-container">
+          <svg className="search-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+          </svg>
+          <input
+            type="text"
+            className={`search-input ${error ? "error" : ""}`}
+            value={plateNumber}
+            onChange={(e) => onPlateNumberChange(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Enter Israeli license plate number"
+          />
+          {plateNumber && (
+            <svg
+              className="clear-icon"
+              onClick={handleClear}
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+            </svg>
+          )}
+          {error && <div className="error-message">{error}</div>}
+        </div>
+        <button
+          className="search-button"
           onClick={onSearch}
           disabled={loading || !plateNumber.trim()}
-          sx={{
-            minWidth: "120px",
-            height: "56px",
-            fontSize: "1rem",
-            position: "relative",
-            overflow: "hidden",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background:
-                "linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent)",
-              transform: "translateX(-100%)",
-              transition: "transform 0.6s",
-            },
-            "&:hover::after": {
-              transform: "translateX(100%)",
-            },
-          }}
         >
           {loading ? "Searching..." : "Search"}
-        </Button>
-      </Box>
-    </Paper>
+        </button>
+      </div>
+    </div>
   );
 };
