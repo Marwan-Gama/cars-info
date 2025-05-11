@@ -38,6 +38,10 @@ function App() {
         searchDisabledParkingByPlate(plateNumber),
       ]);
 
+      console.log('Car API Response:', carResponse);
+      console.log('Tax API Response:', taxResponse);
+      console.log('Parking API Response:', parkingResponse);
+
       if (carResponse.result.records.length > 0) {
         setCarData(carResponse.result.records[0]);
         if (taxResponse.result.records.length > 0) {
@@ -45,8 +49,9 @@ function App() {
         } else {
           setTaxData(null);
         }
-        if (parkingResponse.result.records.length > 0) {
-          setParkingData(parkingResponse.result.records[0]);
+        const parkingRecord = parkingResponse.result.records[0];
+        if (parkingRecord && parkingRecord.status) {
+          setParkingData(parkingRecord);
         } else {
           setParkingData(null);
         }
@@ -105,14 +110,21 @@ function App() {
           <LoadingSkeleton />
         ) : (
           <>
-            {carData && (
+            {error && (
+              <Box sx={{ mt: 4, textAlign: 'center' }}>
+                <Typography variant="h6" color="error.main">
+                  {error}
+                </Typography>
+              </Box>
+            )}
+            {carData && !error && (
               <CarDetails 
                 carData={carData} 
                 hasDisabledParking={parkingData?.status.toLowerCase() === "active"} 
               />
             )}
-            {taxData && <TaxInfo taxData={taxData} />}
-            {parkingData && <DisabledParkingInfo parkingData={parkingData} />}
+            {taxData && !error && <TaxInfo taxData={taxData} />}
+            {parkingData && !error && <DisabledParkingInfo parkingData={parkingData} />}
           </>
         )}
 

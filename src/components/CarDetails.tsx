@@ -98,6 +98,24 @@ export const CarDetails = ({ carData, hasDisabledParking = false }: CarDetailsPr
 
           <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
             <Typography variant="subtitle2" color="text.secondary">
+              צמיג קדמי
+            </Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              {carData.zmig_kidmi}
+            </Typography>
+          </Box>
+
+          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
+            <Typography variant="subtitle2" color="text.secondary">
+              צמיג אחורי
+            </Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              {carData.zmig_ahori}
+            </Typography>
+          </Box>
+
+          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
+            <Typography variant="subtitle2" color="text.secondary">
               תג חניה לנכה
             </Typography>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 1 }}>
