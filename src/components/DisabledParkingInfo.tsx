@@ -1,7 +1,5 @@
-import { Card, CardContent, Typography, Box, Chip, Alert } from "@mui/material";
 import type { DisabledParkingData } from "../types/car";
-import AccessibleIcon from "@mui/icons-material/Accessible";
-import WarningIcon from "@mui/icons-material/Warning";
+import "./DisabledParkingInfo.css";
 
 interface DisabledParkingInfoProps {
   parkingData: DisabledParkingData;
@@ -17,69 +15,47 @@ export const DisabledParkingInfo = ({ parkingData }: DisabledParkingInfoProps) =
   const isExpired = new Date(parkingData.expiry_date) < new Date();
 
   return (
-    <Card sx={{ mt: 2 }}>
-      <CardContent>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-          <Typography variant="h5">
-            תג חניה לנכה
-          </Typography>
-          <AccessibleIcon color={isPermitValid ? "primary" : "disabled"} />
-        </Box>
+    <div className="parking-card">
+      <div className="card-header">
+        <h2 className="card-title">תג חניה לנכה</h2>
+        <svg className="icon" viewBox="0 0 24 24" fill={isPermitValid ? "currentColor" : "#bdbdbd"}>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg>
+      </div>
 
-        <Alert 
-          severity={isPermitValid ? "success" : "warning"}
-          sx={{ mb: 3 }}
-        >
-          {isPermitValid 
-            ? "לרכב זה יש תג חניה לנכה תקף"
-            : "לרכב זה אין תג חניה לנכה תקף"}
-        </Alert>
+      <div className={`alert ${isPermitValid ? "success" : "warning"}`}>
+        {isPermitValid 
+          ? "לרכב זה יש תג חניה לנכה תקף"
+          : "לרכב זה אין תג חניה לנכה תקף"}
+      </div>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" },
-            gap: 2,
-          }}
-        >
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              סטטוס התג
-            </Typography>
-            <Chip
-              label={isPermitValid ? "פעיל" : "לא פעיל"}
-              color={isPermitValid ? "success" : "error"}
-              sx={{ mt: 1 }}
-            />
-          </Box>
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              מספר תג
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {parkingData.permit_number || "N/A"}
-            </Typography>
-          </Box>
-          <Box sx={{ p: 2, bgcolor: "rgba(33, 150, 243, 0.04)", borderRadius: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
-              תאריך תפוגה
-            </Typography>
-            <Typography variant="body1" sx={{ mt: 1 }}>
-              {formatDate(parkingData.expiry_date)}
-            </Typography>
-          </Box>
-          {isExpired && (
-            <Box sx={{ p: 2, bgcolor: "rgba(255, 152, 0, 0.1)", borderRadius: 1 }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <WarningIcon color="warning" />
-                <Typography color="warning.main">
-                  התג פג תוקף
-                </Typography>
-              </Box>
-            </Box>
-          )}
-        </Box>
-      </CardContent>
-    </Card>
+      <div className="details-grid">
+        <div className="detail-box">
+          <p className="detail-label">סטטוס התג</p>
+          <div className={`status-chip ${isPermitValid ? "success" : "error"}`}>
+            {isPermitValid ? "פעיל" : "לא פעיל"}
+          </div>
+        </div>
+
+        <div className="detail-box">
+          <p className="detail-label">מספר תג</p>
+          <p className="detail-value">{parkingData.permit_number || "N/A"}</p>
+        </div>
+
+        <div className="detail-box">
+          <p className="detail-label">תאריך תפוגה</p>
+          <p className="detail-value">{formatDate(parkingData.expiry_date)}</p>
+        </div>
+
+        {isExpired && (
+          <div className="expired-warning">
+            <svg className="icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+            </svg>
+            <span>התג פג תוקף</span>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }; 

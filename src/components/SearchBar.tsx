@@ -15,7 +15,7 @@ export const SearchBar = ({
   loading,
   error,
 }: SearchBarProps) => {
-  const handleKeyPress = (event: React.KeyboardEvent) => {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && !loading) {
       onSearch();
     }
@@ -37,7 +37,7 @@ export const SearchBar = ({
             className={`search-input ${error ? "error" : ""}`}
             value={plateNumber}
             onChange={(e) => onPlateNumberChange(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             placeholder="Enter Israeli license plate number"
           />
           {plateNumber && (
